@@ -1,0 +1,32 @@
+# === 小杰 AI 选股系统 · 忽略清单（本地自用，不对外） ===
+data/
+logs/
+*.duckdb
+*.duckdb.wal
+*.parquet
+_pyenv/
+__pycache__/
+*.pyc
+config.yaml
+.env
+.env.*
+# [2026-11-03] 推送去重账本：运行时状态，含逐票推送历史，不进版本库
+data/push_history.json
+data/push_history.json.bak_*
+_bk_*/
+_qa_logs/
+_gh/
+_scratch/
+# [2026-11-17] 根目录一次性脚本不进库；tools/ 下的 _test_/_release 属正式资产需入库
+/_*.py
+_*.patch
+# [2026-11-17] 外部参考库（含 4 个内嵌 git 仓库，不入本库）
+_ext_repos/
+parent-meal-signup/
+xuanguchi/
+wangyexuangu/
+.npmcache/
+.corepack/
+.rea/
+_snapshots/
+*.zip

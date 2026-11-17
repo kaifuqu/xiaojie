@@ -1,0 +1,24 @@
+﻿# 小杰AI选股系统 Pro V26.88 — Streamlit 主程序与核心引擎依赖快照（交钥匙部署用 pip 安装）
+# 安装：python -m pip install -r requirements.txt
+#
+# 【重要 · V30.1 2026-10-16】本文件是「版本下限」，pip 会解析成各包最新版。
+# 换机器做 24h 部署时不要用本文件，请改用 requirements.lock（精确锁版本），
+# 否则可能拉到未经本项目验证的组合（典型：duckdb 1.6+ 改连接行为、
+# pandas 3.1+ 改 SQL 语义），重演「扫描成功但 signal_log 静默不落库」的老问题。
+#
+# 开发/临时环境：python -m pip install -r requirements.txt
+# 生产/新机器部署：python -m pip install -r requirements.lock
+streamlit>=1.28.0
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+duckdb>=0.9.0
+PyYAML>=6.0
+tushare>=1.2.89
+schedule>=1.2.0
+requests>=2.28.0
+# aiohttp：data/api_fetcher.py 实时批量拉取等（非日内微环境专用，不可删）
+aiohttp>=3.9.0
+altair>=5.0.0
+openpyxl>=3.1.0
+filelock>=3.13.0

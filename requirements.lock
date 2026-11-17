@@ -1,0 +1,96 @@
+# 小杰AI选股系统 Pro V26.88 — 精确锁定版本（交钥匙部署 / 新机器 24h 运行用）
+#
+# 【用途】本文件是 requirements.txt 的「精确版」，把当前已验证可跑的每一个包
+# 锁到具体版本。换机器时用本文件装，装出来的环境和本机 100% 一致。
+#
+# 【怎么用 —— 新机器部署三步】
+#   1) 安装 Python 3.12.7（务必 3.12.x，不要 3.13/3.14）
+#        官网 https://www.python.org/downloads/windows/
+#        安装时务必勾选 "Add python.exe to PATH"
+#   2) 在项目根目录执行（会自己建 _pyenv\venv 隔离环境）：
+#        py -3.12 -m venv _pyenv\venv
+#        _pyenv\venv\Scripts\python.exe -m pip install -U pip
+#        _pyenv\venv\Scripts\python.exe -m pip install -r requirements.lock
+#   3) 体检（必须 0 FAIL）：
+#        _pyenv\venv\Scripts\python.exe verify_system.py
+#
+# 【与 requirements.txt 的区别】
+#   requirements.txt      → 版本下限（>=），给日常开发用，pip 会自己挑最新版
+#   requirements.lock     → 精确版本（==），给部署用，保证与本机完全一致
+#
+# 【为什么必须锁这些】
+#   duckdb   1.5.6  → 1.5.x 才对「同库连接配置必须一致」这条约束行为正确；
+#                     低版本会重演 save_signal_log 静默不落库的老问题
+#   pandas   3.0.6  → 3.0 需要 Python>=3.11；SQL 语义与 2.x 有差异，不要回退
+#   numpy    2.5.4  → NumPy 2.x ABI，pandas 3.0 强依赖
+#   pyarrow  25.0.1 → cp312 wheel 覆盖最好；本机另有 _pyarrow_compat shim 兜底
+#   streamlit 1.65.0 → 企微卡片 / 战法胜率面板依赖此版本渲染行为
+#   tushare   1.4.29 → trade_cal / daily / index_daily 三个端点签名在此版本稳定
+
+# ---- 直接依赖 ----
+streamlit==1.65.0
+pandas==3.0.6
+numpy==2.5.4
+duckdb==1.5.6
+matplotlib==3.11.2
+PyYAML==6.0.3
+tushare==1.4.29
+schedule==1.2.2
+requests==2.34.2
+aiohttp==3.14.5
+altair==6.3.0
+openpyxl==3.1.5
+filelock==4.1.1
+
+# ---- 传递依赖（锁定以防上游解析出意外版本）----
+aiohappyeyeballs==2.7.1
+aiosignal==1.4.0
+anyio==4.15.1
+attrs==26.1.0
+beautifulsoup4==4.15.0
+certifi==2026.7.22
+charset-normalizer==3.5.2
+click==8.5.0
+colorama==0.4.6
+contourpy==1.4.0
+cycler==0.12.1
+et_xmlfile==2.0.0
+fonttools==4.66.1
+frozenlist==1.8.0
+h11==0.16.0
+httptools==0.9.0
+idna==3.20
+itsdangerous==2.2.0
+Jinja2==3.1.6
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+kiwisolver==1.5.1
+lxml==6.1.3
+MarkupSafe==3.0.4
+multidict==7.1.0
+narwhals==2.27.1
+packaging==26.3
+pillow==12.3.0
+propcache==0.5.4
+protobuf==7.36.2
+pyarrow==25.0.1
+pydeck==0.9.3
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+python-multipart==0.0.32
+referencing==0.37.0
+rpds-py==2026.9.1
+simplejson==4.2.0
+six==1.17.0
+soupsieve==3.0.3
+starlette==1.8.0
+toml==0.10.2
+tqdm==4.70.1
+typing_extensions==4.16.0
+tzdata==2026.5
+urllib3==2.8.0
+uvicorn==0.54.0
+watchdog==6.0.0
+websocket-client==1.9.2
+websockets==17.2
+yarl==1.25.1
